@@ -1,1 +1,458 @@
-{"@context":"https://schema.org","@type":"Dataset","name":"VIOLA","description":"\n\t\n\t\t\n\t\tVIOLA\n\t\n\n\n\t\n\t\t\n\t\tDataset Description\n\t\n\nVIOLA is a curated benchmark for evaluating whether LLM-based agents comply with\nexplicit behavioral policies in a multi-agent pipeline. Each example is a single\nagent execution trace — a real run of the CUGA multi-agent system on\nAppWorld tasks — in which the target\nagent's system prompt was modified to induce a specific policy violation using the\ncontrary instruction injection pattern: rather than removing a… See the full description on the dataset page: https://huggingface.co/datasets/policy-violation-benchmark/VIOLA.","alternateName":["policy-violation-benchmark/VIOLA","VIOLA"],"creator":{"@type":"Organization","name":"policy-violation-benchmark","url":"https://huggingface.co/policy-violation-benchmark"},"keywords":["text-classification","other","English","cc-by-4.0","n<1K","🇺🇸 Region: US","multi-agent-systems","llm-agents","policy-conformance","benchmark","agent-evaluation","cuga","appworld"],"license":"https://choosealicense.com/licenses/cc-by-4.0/","url":"https://huggingface.co/datasets/policy-violation-benchmark/VIOLA"}
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "arrayShape": "cr:arrayShape",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "containedIn": "cr:containedIn",
+    "cr": "http://mlcommons.org/croissant/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataBiases": "cr:dataBiases",
+    "dataCollection": "cr:dataCollection",
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isArray": "cr:isArray",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "personalSensitiveInformation": "cr:personalSensitiveInformation",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "prov": "http://www.w3.org/ns/prov#"
+  },
+  "@type": "sc:Dataset",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "repo",
+      "name": "repo",
+      "description": "The Hugging Face git repository.",
+      "contentUrl": "https://huggingface.co/datasets/policy-violation-benchmark/VIOLA/tree/refs%2Fconvert%2Fparquet",
+      "encodingFormat": "git+https",
+      "sha256": "https://github.com/mlcommons/croissant/issues/80"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-default",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "default/*/*.parquet"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "default_splits/split_name"
+      },
+      "@id": "default_splits",
+      "name": "default_splits",
+      "description": "Splits for the default config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "default_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "default_splits/split_name": "train"
+        },
+        {
+          "default_splits/split_name": "validation"
+        },
+        {
+          "default_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "default",
+      "description": "policy-violation-benchmark/VIOLA - 'default' subset\n\nAdditional information:\n- 3 splits: train, validation, test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "default/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "default/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "default_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/run_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "run_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/task_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "task_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/target_agent",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "target_agent"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/violation_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "violation_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/violation_name",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "violation_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/violation_category",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "violation_category"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/severity_label",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "severity_label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/severity_designed",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "severity_designed"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/original_system_prompt",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "original_system_prompt"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/modified_system_prompt",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "modified_system_prompt"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/policy_file_original",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "policy_file_original"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/policy_file_modified",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "policy_file_modified"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/user_input",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "user_input"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/agent_response",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "agent_response"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/task_pass_percentage",
+          "dataType": "cr:Float64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "task_pass_percentage"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/log_path",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "log_path"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/judge1_results",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "judge1_results"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/judge2_results",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "judge2_results"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/judge1_consensus",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "judge1_consensus"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/judge2_consensus",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "judge2_consensus"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
+  "name": "VIOLA",
+  "description": "\n\t\n\t\t\n\t\tVIOLA\n\t\n\n\n\t\n\t\t\n\t\tDataset Description\n\t\n\nVIOLA is a curated benchmark for evaluating whether LLM-based agents comply with\nexplicit behavioral policies in a multi-agent pipeline. Each example is a single\nagent execution trace — a real run of the CUGA multi-agent system on\nAppWorld tasks — in which the target\nagent's system prompt was modified to induce a specific policy violation using the\ncontrary instruction injection pattern: rather than removing a… See the full description on the dataset page: https://huggingface.co/datasets/policy-violation-benchmark/VIOLA.",
+  "alternateName": [
+    "policy-violation-benchmark/VIOLA",
+    "VIOLA"
+  ],
+  "creator": {
+    "@type": "Organization",
+    "name": "policy-violation-benchmark",
+    "url": "https://huggingface.co/policy-violation-benchmark"
+  },
+  "keywords": [
+    "text-classification",
+    "other",
+    "English",
+    "cc-by-4.0",
+    "n<1K",
+    "🇺🇸 Region: US",
+    "multi-agent-systems",
+    "llm-agents",
+    "policy-conformance",
+    "benchmark",
+    "agent-evaluation",
+    "cuga",
+    "appworld"
+  ],
+  "license": "https://choosealicense.com/licenses/cc-by-4.0/",
+  "url": "https://huggingface.co/datasets/policy-violation-benchmark/VIOLA",
+  "citation": "Anonymous. (2026). VIOLA: A Curated Dataset for Evaluating Agent Policy Conformance. NeurIPS 2026 Datasets & Benchmarks Track (under review).",
+  "citeAs": "@misc{viola2026,\n  title        = {{VIOLA}: A Curated Dataset for Evaluating Agent Policy Conformance},\n  author       = {Anonymous},\n  year         = {2026},\n  publisher    = {Hugging Face},\n  howpublished = {\\url{https://huggingface.co/datasets/policy-violation-benchmark/VIOLA}},\n  note         = {Dataset, NeurIPS 2026 Datasets \\& Benchmarks Track (under review)}\n}",
+  "datePublished": "2026-05-03",
+  "version": "1.0.0",
+  "rai:dataCollection": "Generated by injecting controlled policy violations into the system prompts of CUGA (Configurable Universal Generic Agent) agents during execution of AppWorld benchmark tasks. Each trace is a complete OpenTelemetry capture of the multi-agent pipeline run. Violations were injected using a 'contrary instruction' pattern: the target policy text is replaced in-place with an actively misdirecting instruction that contradicts it.",
+  "rai:dataCollectionType": "Synthetic — LLM-generated agent execution traces under controlled prompt manipulation.",
+  "rai:dataCollectionRawData": "Source tasks: AppWorld benchmark (Stanford NLP). Source agent framework: CUGA multi-agent pipeline (LangGraph-based). Underlying LLM: GPT-4.1 via Azure.",
+  "rai:dataCollectionTimeframe": "2026-04-01 / 2026-05-03",
+  "rai:dataAnnotationProtocol": "Two-stage LLM-as-judge consensus pipeline using GPT-4.1 at temperature 0. Stage 1 (theoretic violation): verifies the target policy is semantically absent from the modified prompt. Stage 2 (executional violation): verifies the agent response exhibits the violation and assigns hard/soft severity. Each stage runs 3 times per trace; 2/3 agreement required for acceptance. A programmatic pre-check additionally confirms that the contrary instruction was successfully injected.",
+  "rai:dataAnnotationPlatform": "Programmatic pipeline calling GPT-4.1 via Azure/litellm proxy.",
+  "rai:dataAnnotationAnalysis": "Stage-1 (theoretic violation) inter-run agreement: 100%. Stage-2 (executional violation) inter-run agreement: 71.6%. Designed-vs-empirical severity reclassification rate: 25.5%. V2 (Prerequisite Bypass) reclassified hard-to-soft in 98% of accepted traces. V6 (Decision Criteria Alteration) reclassified soft-to-hard in 62% of accepted traces. Final acceptance rate: 67.8% (337 violation traces validated of 497 generated). The published dataset includes these 337 violation traces plus 63 clean baseline traces, totaling 400 instances.",
+  "rai:dataAnnotatorDemographics": "No human annotators in the primary pipeline. All annotation performed by GPT-4.1 (large language model).",
+  "rai:dataPreprocessingImputation": "Traces failing programmatic pre-check or judge consensus were excluded from the final dataset. 13 (violation × agent) cells were excluded from the compatibility matrix due to systematic incompatibilities, including Pydantic re-serialization issues, baseline outputs that already match the violation, preconditions not met, pre-training override of the removed policy, and policy text appearing in multiple prompt locations. V5 (Output Schema Violation) is fully excluded because it causes parse failures preventing trace extraction.",
+  "rai:dataUseCases": "Benchmarking policy conformance evaluation methods for LLM agents; training trace classifiers for violation detection; studying agent behavior under adversarial prompt manipulation; evaluating multi-agent monitoring systems against realistic behavioral violations.",
+  "rai:dataBiases": "(1) Single agent framework: CUGA / LangGraph — violation signatures may not generalize to other multi-agent architectures. (2) Single task suite: AppWorld — domain coverage is narrow. (3) Synthetic injection mechanism: contrary-instruction prompt manipulation may differ from naturally occurring policy violations. (4) Shared-LLM bias: judges (GPT-4.1) and agent (GPT-4.1) share a model family, potentially leading to correlated assessment biases. (5) English-only. (6) Severity skew: the validated dataset is heavily soft-biased (307 soft / 30 hard / 63 clean baseline), reducing statistical power for hard-violation evaluation.",
+  "rai:dataLimitations": "Small scale: 400 traces across 64 AppWorld tasks; not intended for training large models. Cell sizes uneven (range: 2–47 traces per violation×agent cell). V5 (Output Schema Violation) excluded entirely due to extraction failures. Designed severity differs from empirical severity in 25.5% of cases, indicating that some violations are difficult to predict in advance.",
+  "rai:dataSocialImpact": "Intended to advance reliable evaluation of LLM-based agents in production deployments by providing a curated benchmark of explicit policy violations with structured labels. Not intended for training agents to commit policy violations. The contrary-instruction injection technique is documented for research transparency and should not be used to attack production systems.",
+  "rai:personalSensitiveInformation": "None. AppWorld tasks operate on synthetic/fictional data (e.g., fictional Spotify accounts, fictional Gmail inboxes, fictional Amazon orders). No real user data, no personally identifiable information.",
+  "rai:hasSyntheticData": true,
+  "prov:wasGeneratedBy": {
+    "@type": "prov:Activity",
+    "prov:used": [
+      {
+        "@type": "prov:Entity",
+        "name": "CUGA multi-agent pipeline",
+        "description": "Configurable Universal Generic Agent — LangGraph-based multi-agent system."
+      },
+      {
+        "@type": "prov:Entity",
+        "name": "AppWorld benchmark",
+        "description": "Stanford NLP benchmark of realistic multi-app tasks."
+      },
+      {
+        "@type": "prov:Entity",
+        "name": "GPT-4.1",
+        "description": "OpenAI GPT-4.1 model accessed via Azure as the underlying LLM for both agent execution and judge annotation."
+      }
+    ],
+    "description": "Each trace was generated by injecting a contrary-instruction policy violation into a target agent's system prompt within CUGA, then executing the modified pipeline on an AppWorld task and capturing the full OpenTelemetry trace. Each trace was then validated through a 4-stage pipeline: (1) programmatic pre-check confirming injection, (2) Stage-1 LLM judge (×3) verifying theoretic violation, (3) Stage-2 LLM judge (×3) verifying executional violation and severity, (4) consensus aggregation requiring 2/3 agreement at each stage."
+  }
+}
