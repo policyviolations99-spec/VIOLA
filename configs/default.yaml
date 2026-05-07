@@ -1,0 +1,24 @@
+# Default training configuration for TraceGNN
+
+model:
+  hidden_dim: 256
+  num_heads: 4
+  num_layers: 3
+  dropout: 0.15
+  num_agents: 6          # APIPlannerAgent, APICodePlannerAgent, ShortlisterAgent,
+                         # TaskDecompositionAgent, PlanControllerAgent, FinalAnswerAgent
+  num_failure_classes: 13  # V1, V2, V3a, V3b, V4, V5, V6, V7, V8, V9, V10, V11, clean
+
+training:
+  num_epochs: 100
+  batch_size: 32
+  learning_rate: 1.0e-3
+  weight_decay: 1.0e-4
+  patience: 15           # early stopping patience
+  seed: 42
+
+preprocessing:
+  embedding_model: "all-mpnet-base-v2"   # sentence-transformers model
+  llm_feature_dim: 768
+  non_llm_feature_dim: 64
+  max_spans_per_trace: 200
